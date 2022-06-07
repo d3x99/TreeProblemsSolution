@@ -5,10 +5,11 @@ list_numb = ['first', 'second', 'third']
 x = -1
 y = -1
 z = -1
+next_list = 0
 output = ''
 dec_count = 0
 decisions_list = []
-steps = [[]]
+steps = [[], [], [], []]
 print('This is decision tree program')
 problem = input('Tell me what is the problem? \n')
 another_option = 'y'
@@ -26,23 +27,18 @@ print('\n Now we will define steps for each solution')
 for item in decisions_list:
     x = x + 1
     print('Your ' + str(list_numb[x]) + ' problem is ' + item)
-    while step.lower() != 'break':
-        z = z + 1
-        while True:
-            step = input('Enter step of a problem displayed above: \n'
-                         '(if you are done type "break") \n'
-                         ': ')
-            if step.lower() == 'break':
-                break
-            else:
-                steps[z].append(step)
+    while True:
+        step = input('Enter step of a problem displayed above: \n'
+                     '(if you are done type "break") \n'
+                     ': ')
+        if step.lower() == 'break':
+            break
+        else:
+            steps[next_list].append(step)
+    list_count.append(len(steps[next_list]))
+    next_list = next_list + 1
 
 
 for decision_1 in decisions_list:
     y = y + 1
-    print('Decision :' + decision_1 + 'require ' + str(list_count[y]) + ' steps, which is : ')
-    for each_step in steps:
-        print(each_step)
-
-
-
+    print('Decision: ' + decision_1 + ' require ' + str(list_count[y]) + ' steps which is: ' + str(steps[y]))
