@@ -1,44 +1,43 @@
+def problem():
+    # function ask and store user problem
+    main_problem = input('Tell me what is the problem? \n')
+    return main_problem
 
-# Decision Tree Project
-list_count = []
-list_numb = ['first', 'second', 'third']
-x = -1
-y = -1
-z = -1
-next_list = 0
-output = ''
-dec_count = 0
-decisions_list = []
-steps = [[], [], [], []]
-print('This is decision tree program')
-problem = input('Tell me what is the problem? \n')
-another_option = 'y'
-end = 0
-while another_option == 'y':
-    if another_option.lower() != 'y':
-        pass
 
-    else:
-        decisions = input('Enter your possible decision: \n')
-        decisions_list.append(decisions)
-        another_option = input('Do you have another option?(y or n): ')
+def decisions(list_of_decisions):
+    # function that ask user about possible decisions
+    while True:
+        decision = input('Enter your possible decision: \n')
+        print("Type 'quit' if you are done with decisions")
+        if decision == 'quit':
+            break
+        list_of_decisions.append(decision)
 
-print('\n Now we will define steps for each solution')
-for item in decisions_list:
-    x = x + 1
-    print('Your ' + str(list_numb[x]) + ' problem is ' + item)
+
+def steps(solution, list_of_steps):
+    # creating steps for each decision
+    print('Your solution is ' + solution + '.')
     while True:
         step = input('Enter step of a problem displayed above: \n'
-                     '(if you are done type "break") \n'
+                     '(if you are done type "quit") \n'
                      ': ')
-        if step.lower() == 'break':
+        if step.lower() == 'quit':
             break
         else:
-            steps[next_list].append(step)
-    list_count.append(len(steps[next_list]))
-    next_list = next_list + 1
+            list_of_steps.append(step)
 
 
-for decision_1 in decisions_list:
-    y = y + 1
-    print('Decision: ' + decision_1 + ' require ' + str(list_count[y]) + ' steps which is: ' + str(steps[y]))
+
+
+print('This is decision tree program')
+# calling problem function
+user_problem = problem()
+# calling decision function
+decisions_list = []
+decisions(decisions_list)
+x = -1
+
+list_of_steps_for_decision = []
+for item in decisions_list:
+    steps(item, list_of_steps_for_decision)
+print(list_of_steps_for_decision)
